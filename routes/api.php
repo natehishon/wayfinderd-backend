@@ -15,9 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('register', [\App\Http\Controllers\API\AuthController::class, 'register']);
+Route::post('login', [\App\Http\Controllers\API\AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('inside-mware', function () {
-        return response()->json('Success', 200);
-    });
+
+    Route::get('users/{id}', [\App\Http\Controllers\API\UserController::class, 'show']);
+
+    Route::post('logout', [\App\Http\Controllers\API\AuthController::class, 'logout']);
 });
